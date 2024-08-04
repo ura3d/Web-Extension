@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+ <body class="main">
+   <div class="logo"><div class="text">MoneyMorph</div></div>
+
+   <div class="work-space">
+     <div class="block" id='b1'>
+       <img src="res/countries/ua.png" class="img">
+       <select class="currency">
+         <option value="UAH">UAH</option>
+         <option value="USD">USD</option>
+         <option value="EUR">EUR</option>
+       </select>
+       <input type="number" id='i1' value="" class="input">
+       <div class="delete" id='d1'></div>
+     </div>
+
+     <div class="block" id='b2'>
+       <img src="res/countries/us.png" class="img">
+       <select class="currency">
+         <option value="USD">USD</option>
+         <option value="UAH">UAH</option>
+         <option value="EUR">EUR</option>
+       </select>
+       <input type="number" id='i2' name="usd" value="" class="input">
+       <div class="delete" id='d2'></div>
+     </div>
+
+     <div class="block" id='b3'>
+       <img src="res/countries/eu.png" class="img">
+       <select class="currency">
+         <option value="EUR">EUR</option>
+         <option value="USD">USD</option>
+         <option value="UAH">UAH</option>
+       </select>
+       <input type="number" id='i3' name="usd" value="" class="input">
+       <div class="delete" id='d3'></div>
+     </div>
+   </div>
+
+   <button type="button" name="button" class="add-button" onclick="UAHxUSD(5)">Add currency</button>
+
+   <script src="script.js"></script>
+ </body>
+</html>

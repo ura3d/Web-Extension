@@ -1,0 +1,90 @@
+
+body{
+  border-radius: 15px;
+  margin: 0;
+}
+.main{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  width: fit-content;
+  width: 300px;
+}
+
+.logo{
+  padding: 15px;
+  background-color: #61ED5B;
+  width: 300px;
+  text-align: center;
+}
+
+.logo .text{
+  font-size: 30px;
+  font-weight: bold;
+  color: #052D34;
+}
+
+.work-space{
+  display: grid;
+  padding-top: 30px;
+  padding-bottom: 10px;
+}
+
+.block{
+  margin-bottom: 7px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.img{
+  width: 20px;
+  height: 20px;
+  border-radius: 30px;
+  background-size: cover;
+}
+
+.currency{
+  font-size: 20px;
+  border: none;
+  outline: none;
+}
+
+.input{
+  font-size: 20px;
+  width: 140px;
+}
+
+.delete{
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  height: 12px;
+  width: 12px;
+  margin-left: 7px;
+  background-image: url('res/ico/cancel.png');
+  background-size: contain;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.add-button{
+  background-color: #61ED5B;
+  color: #052D34;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  transition: 0.1s;
+}
+
+.add-button:hover{
+  cursor: pointer;
+  transform: scale(1.03);
+}
+
+.add-button:active{
+  opacity: 0.7;
+  transform: scale(1.05);
+}
