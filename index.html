@@ -7,10 +7,20 @@
  <body class="main">
    <div class="logo"><div class="text">MoneyMorph</div></div>
 
-   <div class="work-space">
-     <div class="block" id='b1'>
-       <img src="res/countries/ua.png" class="img">
-       <select class="currency">
+   <div class="work-space" id='workSpace'>
+
+     <div class="block" id='b0' style="display: none;">
+       <img src="res/countries/ua.png" class="img" id="img0">
+       <select class="currency unactive" id="s0">
+         <option value="UAH">UAH</option>
+       </select>
+       <input type="number" id='i0' value="" class="input">
+       <div class="delete" id='d0'></div>
+     </div>
+
+     <div class="block" id='b1' style="display: none;">
+       <img src="res/countries/ua.png" class="img" id="img1">
+       <select class="currency unactive" id="s1">
          <option value="UAH">UAH</option>
          <option value="USD">USD</option>
          <option value="EUR">EUR</option>
@@ -19,30 +29,27 @@
        <div class="delete" id='d1'></div>
      </div>
 
-     <div class="block" id='b2'>
-       <img src="res/countries/us.png" class="img">
-       <select class="currency">
-         <option value="USD">USD</option>
-         <option value="UAH">UAH</option>
-         <option value="EUR">EUR</option>
+     <div class="block" id='b4' style="display: none">
+       <img class="img" id="img4">
+       <select class='currency' id="s4">
+         <option disabled selected>...</option>
+         <option value="0">UAH</option>
+         <option value="1">USD</option>
+         <option value="2">EUR</option>
+         <option value="CZK">CZK</option>
+         <option value="CAD">CAD</option>
+         <option value="HUF">HUF</option>
+         <option value="CAD">CAD</option>
+         <option value="DKK">DKK</option>
        </select>
-       <input type="number" id='i2' name="usd" value="" class="input">
-       <div class="delete" id='d2'></div>
+       <input type="number" id='i4' value="" class='input'>
+       <div class="delete" id='d4'></div>
      </div>
 
-     <div class="block" id='b3'>
-       <img src="res/countries/eu.png" class="img">
-       <select class="currency">
-         <option value="EUR">EUR</option>
-         <option value="USD">USD</option>
-         <option value="UAH">UAH</option>
-       </select>
-       <input type="number" id='i3' name="usd" value="" class="input">
-       <div class="delete" id='d3'></div>
-     </div>
    </div>
 
-   <button type="button" name="button" class="add-button" onclick="UAHxUSD(5)">Add currency</button>
+
+   <button type="button" class="add-button" id="add">Add currency</button>
 
    <script src="script.js"></script>
  </body>
