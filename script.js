@@ -17,133 +17,234 @@ fetch(url).then(response => {
   const currency = [
     {
       id: 0,
+      isActive: false,
       name: 'UAH',
       val: 1,
       flag: 'res/countries/ua.png',
-      blockId: 1
+      func: (blockId)=> UAHx(blockId),
     },
     {
       id: 1,
+      isActive: false,
       name: 'USD',
       val: USD,
       flag: 'res/countries/us.png',
-      blockId: 2
+      func: (blockId)=> USDx(blockId),
     },
     {
       id: 2,
+      isActive: false,
       name: 'EUR',
       val: EUR,
       flag: 'res/countries/eu.png',
-      blockId: 3
+      func: (blockId)=> EURx(blockId),
     }
   ]
 
   const blocks = [
     {
-      id: 1,
-      block: document.getElementById('b1'),
-      del: document.getElementById('d1'),
-      input: document.getElementById('i1')
-    },
-    {
-      id: 2,
-      block: document.getElementById('b2'),
-      del: document.getElementById('d2'),
-      input: document.getElementById('i2')
-    },
-    {
-      id: 3,
-      block: document.getElementById('b3'),
-      del: document.getElementById('d3'),
-      input: document.getElementById('i3')
+      id: 0,
+      curId: null,
+      block: document.getElementById('b0'),
+      del: document.getElementById('d0'),
+      input: document.getElementById('i0'),
+      select: document.getElementById('s0'),
+      img: document.getElementById('img0')
     }
 ]
 
-  const i1 = blocks[0].input;
-  const i2 = blocks[1].input;
-  const i3 = blocks[2].input;
-
-  //i2.placeholder = (UAH).toFixed(2);
-  //i1.placeholder = (UAH*USD).toFixed(2);
-  //i3.placeholder = (UAH*USD/EUR).toFixed(2);
 
   function placeholder(blockId, curId){
     var holderValue;
-    if(curId === 0){
+    if(curId == 0){
       holderValue = (UAH*USD).toFixed(2);
     }
-    else if(curId === 1){
+    else if(curId == 1){
       holderValue = (UAH).toFixed(2);
     }
-    else if(curId === 2){
+    else if(curId == 2){
       holderValue = (UAH*USD/EUR).toFixed(2);
     }
     blocks[blockId].input.placeholder = holderValue
   }
 
-  placeholder(0, 0);
-  placeholder(1, 1);
-  placeholder(2, 2);
+  function flag(blockId, curId){
+    blocks[blockId].img.src = currency[curId].flag;
+  }
+
+  function inpt(blockId, curId){
+    blocks[blockId].input.addEventListener('input', () => currency[curId].func(blockId));
+  }
 
 
 
   function UAHxUSD(data){
     const xUSD = (parseInt(data)/USD).toFixed(2);
-    i2.value = xUSD;
+    blocks.forEach(item => {
+      if(item.curId === 1){
+        item.input.value = xUSD;
+      }
+    });
+
+    //i2.value = xUSD;
     return(xUSD);
   }
 
   function UAHxEUR(data){
     const xEUR = (parseInt(data)/EUR).toFixed(2);
-    i3.value = xEUR;
+    blocks.forEach(item => {
+      if(item.curId === 2){
+        item.input.value = xEUR;
+      }
+    });
+    //i3.value = xEUR;
     return(xEUR);
   }
 
   function USDxUAH(data){
     const xUAH = (parseInt(data)*USD).toFixed(2);
-    i1.value = xUAH;
+    blocks.forEach(item => {
+      if(item.curId === 0){
+        item.input.value = xUAH;
+      }
+    });
+    //i1.value = xUAH;
     return(xUAH);
   }
 
   function EURxUAH(data){
     const xUAH = (parseInt(data)*EUR).toFixed(2);
-    i1.value = xUAH;
+    blocks.forEach(item => {
+      if(item.curId === 0){
+        item.input.value = xUAH;
+      }
+    });
+    //i1.value = xUAH;
     return(xUAH);
   }
 
 
 
 
-  function UAHx(){
-    const data = i1.value;
+  function UAHx(blockId){
+    const data = blocks[blockId].input.value;
     UAHxUSD(data);
     UAHxEUR(data);
   }
-  i1.addEventListener('input', UAHx);
 
-  function USDx(){
-    const data = i2.value;
-    USDxUAH(data);
-    const mainData = i1.value;
+  function USDx(blockId){
+    const data = blocks[blockId].input.value;
+    mainData = USDxUAH(data);
     UAHxEUR(mainData);
   }
-  i2.addEventListener('input', USDx);
 
-  function EURx(){
-    const data = i3.value;
-    EURxUAH(data);
-    const mainData = i1.value;
+  function EURx(blockId){
+    const data = blocks[blockId].input.value;
+    const mainData = EURxUAH(data);
+    //const mainData = i1.value;
     UAHxUSD(mainData);
   }
-  i3.addEventListener('input', EURx);
 
-  function setBlock(blockId, curId){
-    return(0);
-    placeholder(blockId)
+
+
+  function addBlock(){
+
+    const parent = document.getElementById('workSpace');
+    const newId = blocks.length
+
+
+    const newDiv = document.createElement("div");
+    newDiv.classList.add("block");
+    newDiv.setAttribute('id', 'b' + newId);
+
+
+    const newImg = document.createElement("img");
+    newImg.classList.add("img");
+    newDiv.setAttribute('id', 'img' + newId);
+    newDiv.appendChild(newImg);
+
+
+    const newSelect = document.createElement("select");
+    newSelect.classList.add("currency");
+    newSelect.setAttribute('id', 's' + newId);
+
+    const newOption1 = document.createElement('option');
+    newOption1.disabled = true;
+    newOption1.selected = true;
+    newOption1.innerHTML = '...';
+    newSelect.appendChild(newOption1);
+
+    currency.forEach(item => {
+      var isOk = true;
+      blocks.forEach(block => {
+        if(block.curId === item.id){isOk=false}
+      });
+
+      if(isOk){
+        const newOption = document.createElement('option');
+        newOption.value = item.id;
+        newOption.innerHTML = item.name;
+        newSelect.appendChild(newOption);
+      }
+    });
+    newDiv.appendChild(newSelect);
+    newSelect.addEventListener('change', () => setBlock(newId, newSelect.value));
+
+
+    const newInput = document.createElement('input');
+    newInput.type = 'number';
+    newInput.classList.add('input');
+    newInput.value = "";
+    newInput.disabled = true;
+    newInput.setAttribute('id', 'i' + newId);
+    newDiv.appendChild(newInput);
+
+
+    const newDel = document.createElement('div');
+    newDel.classList.add("delete");
+    newDel.setAttribute('id', 'd' + newId);
+    newDiv.appendChild(newDel);
+    newDel.addEventListener('click', () => hide(newId));
+
+
+    parent.appendChild(newDiv);
+
+    blocks.push({
+      id: newId,
+      block: newDiv,
+      del: newDel,
+      input: newInput,
+      select: newSelect,
+      img: newImg
+    });
   }
 
+  function setBlock(blockId, curId){
+    curId = parseInt(curId, 10);
+    blockId = parseInt(blockId, 10);
+
+    blocks[blockId].curId = curId;
+    blocks[blockId].input.disabled = false;
+    blocks[blockId].select.disabled = true;
+    blocks[blockId].select.firstChild.innerHTML = currency[curId].name;
+    blocks[blockId].select.classList.add('unactive');
+
+    flag(blockId, curId)
+    placeholder(blockId, curId);
+    inpt(blockId, curId);
+
+    return(0);
+  }
+
+
+  addBlock();
+  setBlock(1, 1);
+
+  const addButton = document.getElementById('add');
+  addButton.addEventListener('click', () => addBlock());
+
 function hide(id){
-  blocks.forEach(b => {if(b.id === id){b.block.style.display = 'none'}})
+  blocks.forEach(b => {if(b.id === id){b.block.remove(); b.curId = null}})
 }
 
 blocks.forEach(b => b.del.addEventListener('click', () => hide(b.id)))
