@@ -2,6 +2,9 @@
 body{
   border-radius: 15px;
   margin: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  font-family: "Gill Sans", sans-serif;
 }
 .main{
   display: flex;
@@ -15,7 +18,7 @@ body{
 .logo{
   padding: 15px;
   background-color: #61ED5B;
-  width: 300px;
+  width: 270px;
   text-align: center;
 }
 
@@ -49,6 +52,17 @@ body{
   font-size: 20px;
   border: none;
   outline: none;
+  background-color: white;
+  color: black;
+  width: 42px;
+  margin-right: 22px;
+}
+
+.unactive{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin-right: 18px;
+  width: fit-content;
 }
 
 .input{
