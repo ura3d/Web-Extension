@@ -1,7 +1,7 @@
 {
-    "name": "Currency",
+    "name": "QuickConvert",
     "description": "Currency converter",
-    "version": "1.0",
+    "version": "0.1",
     "manifest_version": 3,
     "action": {"default_popup":"index.html"},
     "content_scripts": [
@@ -12,5 +12,9 @@
     ],
     "permissions": [
         "activeTab"
-    ]
+    ],
+    "icons": 
+    {
+        "128": "./res/ico/128.2.png"
+    }
 }
