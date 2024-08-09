@@ -17,7 +17,7 @@ body{
 
 .logo{
   padding: 15px;
-  background-color: #61ED5B;
+  background-color: #009cef;
   width: 270px;
   text-align: center;
 }
@@ -26,6 +26,20 @@ body{
   font-size: 30px;
   font-weight: bold;
   color: #052D34;
+}
+
+.log{
+  height: 19px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  transition: 0.5s;
+}
+
+.logoImg{
+  height: 30px;
+  position: absolute;
+  left: 255px;
 }
 
 .work-space{
@@ -83,19 +97,19 @@ body{
 }
 
 .add-button{
-  background-color: #61ED5B;
+  background-color: #009cef;
   color: #052D34;
   font-size: 20px;
   border: none;
   border-radius: 10px;
   margin-bottom: 20px;
   padding: 10px;
-  transition: 0.1s;
+  transition: 0.3s;
 }
 
 .add-button:hover{
   cursor: pointer;
-  transform: scale(1.03);
+  opacity: 0.7;
 }
 
 .add-button:active{
